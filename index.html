@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>데브랑 꾸미기</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1><span>데브랑</span> 꾸미기</h1>
+      <p>오픈소스를 선택하여 나의 데브랑을 만들어봐요!</p>
+    </header>
+
+    <div class="main-grid">
+      <!-- Preview -->
+      <div class="preview-panel">
+        <div class="preview-wrapper">
+          <div class="preview-container" id="preview-container">
+            <img id="base-image" src="assets/tiger.png" alt="Tiger character">
+            <div class="logo-overlay" id="flag-overlay"></div>
+            <div class="logo-overlay" id="belly-overlay"></div>
+          </div>
+        </div>
+        <div class="char-tabs">
+          <button class="char-tab active" data-char="tiger">기본</button>
+          <button class="char-tab" data-char="tiger-macbook">랩탑</button>
+          <button class="char-tab" data-char="tiger-coffee">커피</button>
+          <button class="char-tab" data-char="tiger-bag">백팩</button>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls-panel">
+        <!-- Flag area -->
+        <div class="control-card">
+          <div class="area-header">
+            <h3>깃발</h3>
+            <div class="toggle-switch">
+              <input type="checkbox" id="flag-toggle" checked>
+              <span class="slider"></span>
+            </div>
+          </div>
+          <div class="area-gallery" id="flag-gallery-section">
+            <input type="text" class="search-input" id="flag-search" placeholder="로고 검색…">
+            <div class="logo-grid-container" id="flag-grid-container">
+              <div class="logo-grid" id="flag-grid"></div>
+            </div>
+            <div class="position-controls">
+              <label>크기 <input type="range" id="flag-scale" min="0.2" max="2" step="0.05" value="1"><span class="scale-val" id="flag-scale-value">100%</span></label>
+              <label>X <input type="number" id="flag-offset-x" value="0" step="5"></label>
+              <label>Y <input type="number" id="flag-offset-y" value="0" step="5"></label>
+              <label>회전 <input type="number" id="flag-rotation" value="0" step="1">°</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Belly area -->
+        <div class="control-card">
+          <div class="area-header">
+            <h3>셔츠</h3>
+            <div class="toggle-switch">
+              <input type="checkbox" id="belly-toggle">
+              <span class="slider"></span>
+            </div>
+          </div>
+          <div class="area-gallery" id="belly-gallery-section" style="display:none;">
+            <input type="text" class="search-input" id="belly-search" placeholder="로고 검색…">
+            <div class="logo-grid-container" id="belly-grid-container">
+              <div class="logo-grid" id="belly-grid"></div>
+            </div>
+            <div class="position-controls">
+              <label>크기 <input type="range" id="belly-scale" min="0.2" max="2" step="0.05" value="1"><span class="scale-val" id="belly-scale-value">100%</span></label>
+              <label>X <input type="number" id="belly-offset-x" value="0" step="5"></label>
+              <label>Y <input type="number" id="belly-offset-y" value="0" step="5"></label>
+              <label>회전 <input type="number" id="belly-rotation" value="0" step="1">°</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="download-btn" id="download-btn">PNG 다운로드</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

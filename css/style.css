@@ -1,0 +1,384 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f8f6f1;
+  --surface: #ffffff;
+  --border: #e2ddd5;
+  --text: #2c2520;
+  --text-secondary: #7a7067;
+  --accent: #e87830;
+  --accent-hover: #d06820;
+  --accent-light: #fff4ed;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(44, 37, 32, 0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ── */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+header h1 span {
+  color: var(--accent);
+}
+
+header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Preview Panel ── */
+.preview-panel {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.preview-wrapper {
+  position: relative;
+  width: 100%;
+  background:
+    repeating-conic-gradient(#f0ede8 0% 25%, transparent 0% 50%)
+    50% / 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.preview-container {
+  position: relative;
+  width: 100%;
+  max-width: 416px;
+}
+
+.preview-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+
+.logo-overlay {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+}
+
+/* ── Character Tabs ── */
+.char-tabs {
+  display: flex;
+  border-top: 1px solid var(--border);
+}
+
+.char-tab {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.char-tab:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: var(--border);
+}
+
+.char-tab:hover {
+  color: var(--text);
+  background: var(--accent-light);
+}
+
+.char-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Controls Panel ── */
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.control-card h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ── Area Header (toggle inline with title) ── */
+.area-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.area-header h3 {
+  margin-bottom: 0;
+}
+
+.area-gallery {
+  margin-top: 12px;
+}
+
+/* ── Search Input ── */
+.search-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.15s;
+  margin-bottom: 8px;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+/* ── Logo Grid ── */
+.logo-grid-container {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 4px;
+  padding: 4px;
+}
+
+.logo-grid-item {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s;
+  background: var(--bg);
+}
+
+.logo-grid-item:hover {
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.logo-grid-item.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.logo-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Scale Slider ── */
+.scale-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scale-control input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+  height: 6px;
+}
+
+.scale-control .scale-val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 42px;
+  text-align: right;
+}
+
+/* ── Toggles ── */
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-switch .slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.toggle-switch input:checked + .slider {
+  background: var(--accent);
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* ── Download Button ── */
+.download-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.download-btn:hover {
+  background: var(--accent-hover);
+}
+
+.download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Position / Rotation Controls ── */
+.position-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.position-controls label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.position-controls input[type="number"] {
+  width: 60px;
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.position-controls input[type="number"]:focus {
+  border-color: var(--accent);
+}
+
+.position-controls input[type="range"] {
+  width: 80px;
+  accent-color: var(--accent);
+  height: 4px;
+  vertical-align: middle;
+}
+
+.position-controls .scale-val {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 36px;
+}
